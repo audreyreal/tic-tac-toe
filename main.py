@@ -28,22 +28,34 @@ def main() -> None:
     turn = 0
     board = [["" for _ in range(3)] for _ in range(3)]
     event_map = {
-        "-1-": [0]
+        "-1-": (0, 0),
+        "-2-": (0, 1),
+        "-3-": (0, 2),
+        "-4-": (1, 0),
+        "-5-": (1, 1),
+        "-6-": (1, 2),
+        "-7-": (2, 0),
+        "-8-": (2, 1),
+        "-9-": (2, 2),
     }
     while (event := window.read()[0]) != None:
         if window[event].get_text() == "":
+            column, row = event_map[event]
             if turn % 2 == 0:
-                window[event].update("X")
+                write_value = "X"
             else:
-                window[event].update("O")
-            
+                write_value = "O"
             turn += 1
-            check_if_won(window)
+            window[event].update(write_value)
+            board[column][row] = write_value
+            check_winner(window, board)
 
 
-def check_if_won(window) -> bool: # TODO
-    pass
-
+def check_winner(window: sg.Window, board: list) -> str: # TODO
+    # check horizontally
+    for row in board:
+        if len(set(row)) == 1:
+            print(set(row))
 
 if __name__ == "__main__":
     main()
