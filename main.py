@@ -41,21 +41,21 @@ def main() -> None:
     while (event := window.read()[0]) != None:
         if window[event].get_text() == "":
             column, row = event_map[event]
-            if turn % 2 == 0:
-                write_value = "X"
-            else:
-                write_value = "O"
+            write_value = "X" if turn % 2 == 0 else "O"
             turn += 1
             window[event].update(write_value)
             board[column][row] = write_value
-            check_winner(window, board)
+            window["-STATUS-"].update(check_winner(board))
+        
 
 
-def check_winner(window: sg.Window, board: list) -> str: # TODO
+def check_winner(board: list) -> str: # doesn't work yet lol
     # check horizontally
     for row in board:
-        if len(set(row)) == 1:
-            print(set(row))
+        if row[0] == row[1] == row[2]:
+            return "X is the winner!" if row[0] == "X" else "O is the winner!"
+    # check vertically
+    columns_board = [["" for _ in range(3)] for _ in range(3)]
 
 if __name__ == "__main__":
     main()
