@@ -1,8 +1,17 @@
-import random
+"""Multiplayer Tic Tac Toe Program
+
+Returns:
+    None: None
+"""
 import PySimpleGUI as sg
 
 
 def gui() -> sg.Window:
+    """Define the main gui
+
+    Returns:
+        sg.Window: The tic tac toe GUI with layout
+    """
     sg.theme("Reddit")
 
     def button(key: int) -> sg.Button:
@@ -23,6 +32,11 @@ def gui() -> sg.Window:
 
 
 def main() -> None:
+    """Main function
+
+    Returns:
+        None: None
+    """
     window = gui()
     turn = 0
     board = [["" for _ in range(3)] for _ in range(3)]
@@ -50,6 +64,14 @@ def main() -> None:
 
 
 def check_winner(board: list) -> str or None:  # actually works now lets go
+    """Checks for winner of a tic tac toe board
+
+    Args:
+        board (list): Current tic tac toe board
+
+    Returns:
+        str or None: None if noone has won, str if someone has
+    """
     # check horizontally
     for row in board:
         if "" not in row and row[0] == row[1] == row[2]:
