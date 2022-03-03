@@ -4,16 +4,14 @@ import PySimpleGUI as sg
 
 def gui() -> sg.Window:
     sg.theme("Reddit")
-    sg.set_options(
-        suppress_raise_key_errors=False,
-        suppress_error_popups=False,
-        suppress_key_guessing=False,
-    )
+
+    def button(key: int) -> sg.Button:
+        return sg.Button("", key=f"-{key}-", size=(3, 1))
 
     layout = [
-        [sg.Button("", key="-1-"), sg.Button("", key="-2-"), sg.Button("", key="-3-")],
-        [sg.Button("", key="-4-"), sg.Button("", key="-5-"), sg.Button("", key="-6-")],
-        [sg.Button("", key="-7-"), sg.Button("", key="-8-"), sg.Button("", key="-9-")],
+        [button(1), button(2), button(3)],
+        [button(4), button(5), button(6)],
+        [button(7), button(8), button(9)],
         [sg.Text("Game in progress!", key="-STATUS-")],
     ]
 
