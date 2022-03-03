@@ -3,6 +3,7 @@
 Returns:
     None: None
 """
+import random
 import PySimpleGUI as sg
 
 
@@ -28,6 +29,7 @@ def gui() -> sg.Window:
         "Tic-Tac-Toe",
         layout=layout,
         use_default_focus=False,
+        
     )
 
 
@@ -88,6 +90,20 @@ def check_winner(board: list) -> str or None:  # actually works now lets go
         return f"{descending_diagonals[1]} is the winner!"
     if "" not in ascending_diagonals and len(set(ascending_diagonals)) == 1:
         return f"{ascending_diagonals[1]} is the winner!"
+
+
+def normal_ai(board: list) -> list:
+    """Beatable tic tac toe AI
+
+    Args:
+        board (list): Current tic tac toe board composition
+
+    Returns:
+        list: Tic tac toe board with another square filled out by the AI
+    """
+    computer_choice = random.choice(board)
+    if computer_choice != "":
+        return 
 
 
 if __name__ == "__main__":
